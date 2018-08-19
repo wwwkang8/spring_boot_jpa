@@ -11,6 +11,22 @@
  - 알고리즘 : 백준 알고리즘 기초 동영상 강의 - 1일 1
  - Tool 사용법 : git, intellij, postman 공부
 
+## 1-1강 : Spring boot 로컬 개발환경 세팅
+### 1. 로컬 개발환경 세팅
+      - 프로젝트 생성 : Spring Starter Project 생성
+      - 프로젝트 이름 정하기 : my-slipp
+      - Type : maven, package : jar
+      - Group : net.slipp
+      - Artifact : my-slipp
+      - Package : net.slipp
+      - 디펜던시 추가 : Web, Mustache(템플릿엔진), devtools --> pom.xml에서 확인이 가능하다.
+ 
+ ### 2. 서버 시작 : application.properties 에서 server.port='포트번호' 변경하고 서버를 구동.
+ ### 3. LiveReload
+      - 크롬 앱 LiveReload를 설치한다.
+      - 역할 : STS에서 변경사항이 생겼을 때, 파일의 변경사항을 자동으로 인식하여 기존의 refresh를 자동으로 해주는 것이다.
+      - Enable liveReload : 동그란 화살표 아이콘을 클릭하면 점이 검은색이 되면서 기능이 활성화 된다.
+
 
 ## 1-2강 : Boostrap 활용한 html 페이지 개발
 ### 1) bootstrap Jar 파일 다운로드 : 인터넷에서 받아올 수도 있지만 프로젝트 내부에 jar파일로 다운하는 방법도 있다
