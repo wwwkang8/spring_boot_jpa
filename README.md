@@ -2,7 +2,7 @@
 자바지기 박재성님의 유튜브 강좌로 혼자 부트, JPA 독학
 
 
-## 2강 : Boostrap 활용한 html 페이지 개발
+## 1-2강 : Boostrap 활용한 html 페이지 개발
 ### 1) bootstrap Jar 파일 다운로드 : 인터넷에서 받아올 수도 있지만 프로젝트 내부에 jar파일로 다운하는 방법도 있다
    - jar 파일 찾는 방법 : mvnrepository(메이븐)에서 찾고자 하는 jar 파일을 검색한다.
    - pom.xml dependency 추가 : 메이븐 디펜던시를 pom.xml에 추가한다.
@@ -12,4 +12,16 @@
 ### 2) Bootstrap에서 필요한 Component 끌어다 쓰기
   - form 형태 : https://getbootstrap.com/docs/4.1/components/forms/
   - Navbar 코드 : https://getbootstrap.com/docs/4.1/examples/navbars/
+  
+## 1-3강 : local 소스코드를 github에 올리기
+### 1) 로컬 코드 개발 서버/ 실 서버
+      - local --> git/svn(버전관리시스템) --> 개발 서버/ 실 서버.  !로컬 코드가 바로 실 서버로 이동하지 않는다. 중간에 git을 통해 배포
+      - local --> 소스트리 --> github.com --> 개발 서버/ 실 서버
+
+### 2) 소스트리 사용하기
+      - 1. 소스트리에서 새로운 탭을 하나 생성한다.
+      - 2. 
+     
+    
+    
 
