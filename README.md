@@ -69,5 +69,35 @@
       - 닉네임 우클릭 --> 열기 클릭 : 해당 원격 서버에 연결이 된다.
       - SSH 보안경고 : 수락 및 저장 클릭.
       - 접속 끊기 : exit 명령어 입력
-    
+      
+### 3) ubuntu 계정에서 root 계정으로 활성화 시키기(이게 어려웠다)
+    - 참고 블로그 : http://app-developer.tistory.com/94, http://ryanwoo.tistory.com/6, http://lab4109.blogspot.com/2013/10/aws-ec2-root.html
+    - $ sudo passwd root : root 계정의 비밀번호를 바꾸는 작업
+    - $ sudo vi /etc/ssh/sshd_config : PermitRootLogin을 yes로 바꾸어준다.
+    - $ sudo cp /home/ubuntu/.ssh/authorized_keys /root/.ssh
+    - $ sudo service sshd restart : ubuntu유저의 인증키를 root로 복사하고 sshd를 리스타트한다.
+    - ubuntu server 등록정보에 가서 [연결 > 사용자 인증]에서 이름을 "root"로 변경한다.
 
+### 4) adduser 명령어 사용하여 계정 추가하기
+    - ~# adduser 추가할 아이디
+    - password 2번 입력
+    - Full Name[] : 입력, 나머지 Room Number, Work Phone, Home Phone, Other은 Enter키로 스킵할 수 있다.
+    - Is the information correct? [Y/n] Y
+    - cd /home : home 폴더로 이동
+    - cd wwwkang7 : home 폴더의 wwwkang7 계정으로 이동.
+### 5) 생성한 계정에 권한 부여하기
+    - vi /etc/sudoers : 생성한 계정들의 권한을 부여할 수 있는 창이 뜬다. (단축키 i : insert모드, esc : 입력모드에서 나온다)
+    - 권한 추가 : wwwkang7 ALL=(ALL:ALL) ALL 이렇게 해서 wwwkang7에 권한을 부여한다.
+    - 저장하고 나오기 : :wq!를 치면 저장하고 나온다.
+    
+### 6) 생성한 계정으로 재접속하기 --> 이 부분이 안된다. 암호 입력을 해도 계속 틀리게 나온다.
+
+### 7) 각 계정별 utf-8 인코딩 설정
+    - sudo locale-gen ko_KR.EUC-KR ko_KR.UTF-8
+    - sudo dpkg-reconfigure locales
+    - Home 디렉토리의 .bash_profile에 다음 설정 추가 --> vi .bash_profile 입력하고 enter하면 해당 파일이 생성되고 입력 가능.
+      - LANG="ko_KR.UTF-8"
+      - LANGUAGE="ko_KR:ko:en_US:en"
+    - $ source .bash_profile : 입력한 UTF 설정을 바로 반영할 수 있도록 하는 
+    - $ env : 이 명령어를 실행해서 설정을 확인할 수 있다.
+    - 
