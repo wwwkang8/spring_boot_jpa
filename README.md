@@ -73,7 +73,7 @@
 ### 3) ubuntu 계정에서 root 계정으로 활성화 시키기(이게 어려웠다)
     - 참고 블로그 : http://app-developer.tistory.com/94, http://ryanwoo.tistory.com/6, http://lab4109.blogspot.com/2013/10/aws-ec2-root.html
     - $ sudo passwd root : root 계정의 비밀번호를 바꾸는 작업
-    - $ sudo vi /etc/ssh/sshd_config : PermitRootLogin을 yes로 바꾸어준다.
+    - $ sudo vi /etc/ssh/sshd_config : PermitRootLogin을 yes로 바꾸어준다. (:wq! 명령어를 써서 저장하고 나간다)
     - $ sudo cp /home/ubuntu/.ssh/authorized_keys /root/.ssh
     - $ sudo service sshd restart : ubuntu유저의 인증키를 root로 복사하고 sshd를 리스타트한다.
     - ubuntu server 등록정보에 가서 [연결 > 사용자 인증]에서 이름을 "root"로 변경한다.
