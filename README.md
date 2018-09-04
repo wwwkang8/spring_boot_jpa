@@ -100,4 +100,21 @@
       - LANGUAGE="ko_KR:ko:en_US:en"
     - $ source .bash_profile : 입력한 UTF 설정을 바로 반영할 수 있도록 하는 
     - $ env : 이 명령어를 실행해서 설정을 확인할 수 있다.
-    - 
+
+## 1-5강 원격 서버에 소스코드 배포하기 2단계
+### 참고문서 : https://goo.gl/zuWQ5V
+### 1) 자바 설치
+    - jdk download로 이동 : Linux x64버전의 jdk 다운로드 URL 링크를 복사한다(http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz)
+    
+    - jdk 1.8 인스톨 하는 명령어(https://goo.gl/MKlCv8) : wget --header "Cookie: oraclelicense=accept-securebackup-cookie"
+ http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz
+ 이게 jdk 다운로드 명령어이다. --header 부분은 라이센스에 동의하는 것을 위한 명령어이다.
+     
+    - 심볼릭 링크 지정 : ln -s jdk1.8.0_181/ java  => jdk 디렉토리를 java라는 별칭을 지어준다는 것으로 보면 됨.
+                        결과 : java -> jdk1.8.0_181/
+    - 환경변수 추가 : vi .bash_profile에 접속하여 다음의 명령어를 입력하고 저장한다
+                     JAVA_HOME=/home/slipp/java    : home의 slipp계정에 java를 설정해준다.
+                     PATH=$PATH:$JAVA_HOME/bin     : 기존에 있던 path에 JAVA_HOME이라는 path를 추가해주는 것.
+    - bash_profile 반영 : $ source .bash_profile 명령어 입력.
+                          $ env로 환경변수 변경된 것 확인 가능
+    - java 설치 확인 : $ java -verison 명령어 입력하면 확인 가능.
