@@ -133,3 +133,8 @@
     - $ ls -al 명령어 -> cd spring_boot_jpa : ls -al 명령어로 클론한 소스폴더에 접근한다.
     - $ chmod +x mvnw : 현재 로그인한 계정에만 실행권한을 부여하는 것(이것을 안하면 permission denied가 뜬다)
     - $ ./mvnw clean package : 지난 시간에 개발한 코드를 그대로 빌드 해준다.
+ 
+### 3) 빌드 이후 서버 띄우기
+    - $ cd target : target 폴더로 이동.
+    - $ java -jar my-slipp-0.0.1-SNAPSHOT.jar : my-slipp 프로젝트를 서버에 띄워 실행하는 명령어
+    - 포트번호가 막혀있다. 1-5강 17:08분부터 다시 
