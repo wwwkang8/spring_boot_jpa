@@ -86,8 +86,9 @@
     - cd /home : home 폴더로 이동
     - cd wwwkang7 : home 폴더의 wwwkang7 계정으로 이동.
 ### 5) 생성한 계정에 권한 부여하기
+    - 주의!! AWS Ubuntu 인스턴스에서는 이미 "ubuntu"라는 계정이 있기 때문에 따로 adduser로 계정을 추가하지 않아도 된다.
     - vi /etc/sudoers : 생성한 계정들의 권한을 부여할 수 있는 창이 뜬다. (단축키 i : insert모드, esc : 입력모드에서 나온다)
-    - 권한 추가 : wwwkang ALL=(ALL:ALL) ALL 이렇게 해서 wwwkang에 권한을 부여한다.(주의 : 숫자로 계정 이름을 끝내면 안된다. 문자로 끝내기)
+    - 권한 추가 : ubuntu ALL=(ALL:ALL) ALL 이렇게 해서 ubuntu에 모든 권한을 부여한다.(주의 : 숫자로 계정 이름을 끝내면 안된다. 문자로 끝내기)
     - 저장하고 나오기 : :wq!를 치면 저장하고 나온다.
     
 ### 6) 생성한 계정으로 재접속하기 --> 이 부분이 안된다. 암호 입력을 해도 계속 틀리게 나온다.
@@ -109,8 +110,12 @@
     - jdk 1.8 인스톨 하는 명령어(https://goo.gl/MKlCv8) : wget --header "Cookie: oraclelicense=accept-securebackup-cookie"
  http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz
  이게 jdk 다운로드 명령어이다. --header 부분은 라이센스에 동의하는 것을 위한 명령어이다.
+ 
+    - tar.gz 파일 압축 풀기 : $ guzip jdk-8u181-linux-x64.tar.gz 명령어를 입력하여 tar 폴더의 압축을 푼다.
+    
+    - tar 파일 압축 풀기 : $ tar -xvf jdk-8u181-linux-x64.tar 명령어 입력하여 1개의 tar 파일로 묶여있던 파일들이 모두 압축이 풀린다.
      
-    - 심볼릭 링크 지정 : ln -s jdk1.8.0_181/ java  => jdk 디렉토리를 java라는 별칭을 지어준다는 것으로 보면 됨.
+    - 심볼릭 링크 지정 : ln -s jdk1.8.0_181/ java  명령어는  jdk 디렉토리를 java라는 별칭을 지어준다는 것으로 보면 됨.
                         결과 : java -> jdk1.8.0_181/
     - 환경변수 추가 : vi .bash_profile에 접속하여 다음의 명령어를 입력하고 저장한다
                      JAVA_HOME=/home/slipp/java    : home의 slipp계정에 java를 설정해준다.
