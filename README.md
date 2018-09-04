@@ -137,4 +137,6 @@
 ### 3) 빌드 이후 서버 띄우기
     - $ cd target : target 폴더로 이동.
     - $ java -jar my-slipp-0.0.1-SNAPSHOT.jar : my-slipp 프로젝트를 서버에 띄워 실행하는 명령어
-    - 포트번호가 막혀있다. 1-5강 17:08분부터 다시 
+    - 8080 포트가 기본적으로 막혀있다. 이것을 풀어주는 것을 해야함
+    - $ sudo ufw status verbose : 방화벽 상태를 보여주는 명령어. 만약 결과가 "Status: inactive"로 나온다면 $ sudo ufw enable 명령어 입력.
+    - 
