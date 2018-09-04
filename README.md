@@ -123,3 +123,10 @@
     - bash_profile 반영 : $ source .bash_profile 명령어 입력.
                           $ env로 환경변수 변경된 것 확인 가능
     - java 설치 확인 : $ java -verison 명령어 입력하면 확인 가능.
+
+### 2) git 설치하기
+    - Ubuntu에 깃 설치하기 참고 페이지 : https://goo.gl/nM1HSy
+    - $ sudo apt-get update : 현재 ubuntu가 관리하고 있는 소프트웨어들의 최신버전들로 업데이터 하는 명령어
+    - $ sudo apt-get install git : 시스템 전체 사용자가 깃을 사용할 수 있도록 설치한다.
+    - $ git --version : 깃을 설치 후 깃의 버전을 확인할 때 사용하는 명령어
+    - 
