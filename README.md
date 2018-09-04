@@ -129,4 +129,7 @@
     - $ sudo apt-get update : 현재 ubuntu가 관리하고 있는 소프트웨어들의 최신버전들로 업데이터 하는 명령어
     - $ sudo apt-get install git : 시스템 전체 사용자가 깃을 사용할 수 있도록 설치한다.
     - $ git --version : 깃을 설치 후 깃의 버전을 확인할 때 사용하는 명령어
-    - 
+    - $ git clone https://github.com/wwwkang8/spring_boot_jpa.git : 내 원격 서버에 깃의 코드가 복사가 되는 명령어
+    - $ ls -al 명령어 -> cd spring_boot_jpa : ls -al 명령어로 클론한 소스폴더에 접근한다.
+    - $ chmod +x mvnw : 현재 로그인한 계정에만 실행권한을 부여하는 것(이것을 안하면 permission denied가 뜬다)
+    - $ ./mvnw clean package : 지난 시간에 개발한 코드를 그대로 빌드 해준다.
