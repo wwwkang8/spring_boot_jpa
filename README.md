@@ -138,5 +138,14 @@
     - $ cd target : target 폴더로 이동.
     - $ java -jar my-slipp-0.0.1-SNAPSHOT.jar : my-slipp 프로젝트를 서버에 띄워 실행하는 명령어
     - 8080 포트가 기본적으로 막혀있다. 이것을 풀어주는 것을 해야함
-    - $ sudo ufw status verbose : 방화벽 상태를 보여주는 명령어. 만약 결과가 "Status: inactive"로 나온다면 $ sudo ufw enable 명령어 입력.
-    - 
+    - $ sudo ufw status verbose : 방화벽 상태를 보여주는 명령어. 클라우드 서버에서는 디폴트로 "Status: inactive"가 뜬다.
+    - !!!주의 사항!!!(방화벽 설정법 : https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04)
+      - 하지말 것 : "Status=inactive" 상태에서 바로 sudo ufw enable 하면 ssh connection이 안되서 재접속이 안된다. 아래와 같이 하기
+      - 1) $ sudo ufw status verbose : 방화벽 Status를 확인한다. 디폴트로 inactive이다.
+      - 2) $ sudo ufw default deny incoming : incoming 디폴트 정책 설정. 인입되는 요청을 거부한다.
+      - 3) $ sudo ufw default allow outgoing : outgoing 디폴트 정책 설정. 아웃바운드 응답을 허용한다.
+      - 4) $ sudo ufw allow ssh : 2번에서 모든 인입 요청을 거부했는데, ssh 연결은 허용하는 명령어(22번 포트를 열어준다)
+      - 5) $ sudo ufw allow 22 : 4번과 동일한 커맨드이다.
+      - 6) $ sudo ufw enable : 방화벽을 활성화 시키는 명령어. 이미 위에서 방화벽 정책을 정해서 재접속 불가 걱정필요 없다.
+      - 7) $ sudo ufw allow 80 : 80포트를 열어주는 것
+      - 8) $ sudo ufw allow 8080/tcp : 8080 tcp 포트를 열어주는 것
