@@ -138,5 +138,34 @@
     - $ cd target : target 폴더로 이동.
     - $ java -jar my-slipp-0.0.1-SNAPSHOT.jar : my-slipp 프로젝트를 서버에 띄워 실행하는 명령어
     - 8080 포트가 기본적으로 막혀있다. 이것을 풀어주는 것을 해야함
-    - $ sudo ufw status verbose : 방화벽 상태를 보여주는 명령어. 만약 결과가 "Status: inactive"로 나온다면 $ sudo ufw enable 명령어 입력.
-    - 
+    - $ sudo ufw status verbose : 방화벽 상태를 보여주는 명령어. 클라우드 서버에서는 디폴트로 "Status: inactive"가 뜬다.
+    - !!!주의 사항!!!(방화벽 설정법 : https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04)
+      - 하지말 것 : "Status=inactive" 상태에서 바로 sudo ufw enable 하면 ssh connection이 안되서 재접속이 안된다. 아래와 같이 하기
+      - 1) $ sudo ufw status verbose : 방화벽 Status를 확인한다. 디폴트로 inactive이다.
+      - 2) $ sudo ufw default deny incoming : incoming 디폴트 정책 설정. 인입되는 요청을 거부한다.
+      - 3) $ sudo ufw default allow outgoing : outgoing 디폴트 정책 설정. 아웃바운드 응답을 허용한다.
+      - 4) $ sudo ufw allow ssh : 2번에서 모든 인입 요청을 거부했는데, ssh 연결은 허용하는 명령어(22번 포트를 열어준다)
+      - 5) $ sudo ufw allow 22 : 4번과 동일한 커맨드이다.
+      - 6) $ sudo ufw enable : 방화벽을 활성화 시키는 명령어. 이미 위에서 방화벽 정책을 정해서 재접속 불가 걱정필요 없다.
+      - 7) $ sudo ufw allow 80 : 80포트를 열어주는 것
+      - 8) $ sudo ufw allow 8080/tcp : 8080 tcp 포트를 열어주는 것
+### !!외부에서 8080 포트로 접속이 안되었던 이유 및 해결책!!
+   - 기존 보안그룹 문제점 : 인바운드 규칙에 도서관2층, 커피랑도서관, 집 IP 주소만 22번 포트로 접근할 수 있도록 되어있었다.
+     22번 포트는 주로 개발자들이 터미널을 이용해서 접속하는 포트번호이다.(http://gun0912.tistory.com/44)
+   - 해결책 : 인바운드 규칙에 HTTP, 사용자 TCP 지정 룰 2가지를 추가하여 80포트, 8080포트를 열어준다
+      - HTTP 유형 :HTTP 규칙은 기본적으로 80포트이다
+      - 사용자 TCP 지정 유형 : 사용자 TCP 지정 규칙은 배포한 톰캣의 포트번호가 8080이기 때문에 8080 포트 번호를 설정한다.
+![default](https://user-images.githubusercontent.com/26863285/45137655-98433000-b1e4-11e8-9a68-053146deb32a.png)
+
+      - 고정아이피 설정법 : https://jojoldu.tistory.com/259?category=635883   여기에 탄력적 IP 설정법 나와있으니까 참고
+### 1-6강 AWS 인스턴스 생성 및 SSH를 통한 로그인
+      - EC2 우분투 인스턴스 생성 : https://jojoldu.tistory.com/259?category=635883
+      - 보안그룹 설정
+         - 디폴트 : 22번 포트에만 접근할 수 있도록 디폴트로 설정되어 있다.
+         - HTTP 80 포트 : HTTP를 설정하면 80포트가 디폴트로 열리게 되어있다.
+         - Customer TCP Rule : 포트번호 8080으로 지정한다.
+      - 인스턴스 런칭
+         - 키페어 발급 : 처음 생성할 때는 키페어가 없기 때문에 생성한다.
+      - public DNS, public IP : 이 2가지로 접근 가능하다. 여기서는 IP로 접근
+         - ssh -I springboot.pem ubuntu@public IP 주소( 에러 발생시 chmod 400 springbot.pem 명령어로 권한부여)
+         - 
