@@ -1,7 +1,19 @@
-package net.slipp.web;
+package net.slipp.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class User {
+	@Id //PK에 해당하는 필드에 주는 어노테이션
+	@GeneratedValue //데이터베이스에서 자동으로 1씩 증가. 시퀀스와 기능이 동일
+	private Long id;
+	
+	@Column(nullable=false, length=20) //userId에는 null이 들어갈 수 없다는 뜻
 	private String userId;
+	
 	private String password;
 	private String name;
 	private String email;
