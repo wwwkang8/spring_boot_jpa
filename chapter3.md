@@ -62,4 +62,25 @@
  
  ### 3-4강. 개인정보 수정 기능 구현1
  	- 기본적으로 MVC 패턴에서는 View에 접근할 때 무조건 Controller를 통해서 한다.
-	- 3-4강 10분부터 다시 
+	- 수정 버튼 폼
+	<tbody>
+               	{{#users}}
+               		<tr>
+               			<th scope="row">{{id}}</th>
+               			<td>{{userId}}</td>
+               			<td>{{name}}</td>
+               			<td>{{email}}</td>
+               			<td><a href="/users/{{id}}/form" class="btn btn-success" role="button">수정</a></td>
+               		</tr>
+               	{{/users}}
+              </tbody>
+	 Controller
+	 @GetMapping("{id}/form")
+	public String updateForm(@PathVariable Long id, Model model){
+		User user = userRepository.findById(id).get();  
+		System.out.println("User Controller : "+user);
+		model.addAttribute("user", user);
+		return "/user/updateForm";
+	}
+	
+	- 절대경로로 써서 css 경로 지정하기
