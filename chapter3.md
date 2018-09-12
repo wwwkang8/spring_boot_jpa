@@ -59,3 +59,7 @@
     - @Id : 특정 필드값을 PK로 만들어준다
     - @GeneratedValue : 시퀀스 값을 자동으로 1씩 증가시켜준다
     - @Column(nullable=false) : Not null을 설정해 줄 수 있다.
+ 
+ ### 3-4강. 개인정보 수정 기능 구현1
+ 	- 기본적으로 MVC 패턴에서는 View에 접근할 때 무조건 Controller를 통해서 한다.
+	- 3-4강 10분부터 다시 
