@@ -9,30 +9,29 @@
 <div class="container" id="main">
    <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
       <div class="panel panel-default content-main">
-          <form name="reservation" method="post" action="/reservations">
+      {{#reservation}}
               <div class="form-group">
                   <label for="customer">customerName</label>
-                  <input class="form-control" id="customerName" name="customerName" placeholder="customerName"/>
+                  <input class="form-control" id="customerName" name="customerName" value={{customerName}} readonly/>
               </div>
               <div class="form-group">
                   <label for="title">title</label>
-                  <input type="text" class="form-control" id="title" name="title" placeholder="title"/>
+                  <input type="text" class="form-control" id="title" name="title" value={{title}} readonly/>
               </div>
               <div class="form-group">
                   <label for="option">option</label>
-                  <input type="text" class="form-control" id="option" name="option" placeholder="option"/>
+                  <input type="text" class="form-control" id="option" name="option" value={{option}} readonly/>
               </div>
               <div class="form-group">
                   <label for="quantity">quantity</label>
-                  <input type="text" class="form-control" id="quantity" name="quantity" placeholder="quantity"/>
+                  <input type="text" class="form-control" id="quantity" name="quantity" value={{quantity}} readonly/>
               </div>
               <div class="form-group">
                   <label for="contents">contents</label>
-                  <textarea name="contents" id="contents" rows="5" class="form-control"></textarea>
+                  <textarea name="contents" id="contents" rows="5" class="form-control" readonly>{{contents}}</textarea>
               </div>
-              <button type="submit" class="btn btn-success clearfix pull-right">make order</button>
               <div class="clearfix" />
-          </form>
+              {{/reservation}}
         </div>
     </div>
 </div>

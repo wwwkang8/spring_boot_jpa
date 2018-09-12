@@ -12,7 +12,7 @@
           <table class="table table-hover">
               <thead>
                 <tr>
-                    <th>#</th> <th>customerName</th> <th>title</th> <th></th>
+                    <th>#</th> <th>customerName</th> <th>title</th> <th>quantity</th><th>option</th>
                 </tr>
               </thead>
               <tbody>
@@ -21,6 +21,9 @@
                			<th scope="row">{{id}}</th>
                			<td>{{customerName}}</td>
                			<td>{{title}}</td>
+               			<td>{{quantity}}</td>
+               			<td>{{option}}</td>
+               			<td><a href="/reservations/{{id}}/" class="btn btn-success" role="button">상세보기</a></td>
                		</tr>
                	{{/reservation}}
               </tbody>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +18,11 @@ public class ReservationController {
 	@Autowired
 	private ReservationRepository reservationRepository;
 	
+	@GetMapping("/form")
+	public String createReservation(){
+		return "/reservation/form";
+	}
+	
 	@PostMapping("")
 	public String createOrder(Reservation reservation){
 		System.out.println(reservation);
@@ -27,8 +33,14 @@ public class ReservationController {
 	@GetMapping("")
 	public String listOrder(Model model){
 		model.addAttribute("reservation",reservationRepository.findAll());
-		System.out.println("asdfasdf");
 		return "/reservation/list";
+	}
+	
+	@GetMapping("/{id}")
+	public String detail(@PathVariable Long id, Model model){
+		Reservation reservation=reservationRepository.findById(id).get();
+		model.addAttribute("reservation", reservation);
+		return "reservation/detail";
 	}
 	
 }
