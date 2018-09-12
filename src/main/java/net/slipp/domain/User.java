@@ -34,8 +34,15 @@ public class User {
 	 * 파라메터가 맵핑되는 것은 private 변수가 아니라
 	 * set 메서드의 이름에 맵핑이 되는 것이다.
 	 * */
+	
 	public String getUserId() {
 		return userId;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;

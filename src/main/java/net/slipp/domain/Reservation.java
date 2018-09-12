@@ -14,12 +14,16 @@ public class Reservation {
 	@Column(nullable=false)
 	private String customerName;
 	private String title;
+	private String option;
+	private String quantity;
 	private String contents;
-	public Reservation(Long id, String customerName, String title, String contents) {
+	public Reservation(Long id, String customerName, String title, String option, String quantity, String contents) {
 		super();
 		this.id = id;
 		this.customerName = customerName;
 		this.title = title;
+		this.option = option;
+		this.quantity = quantity;
 		this.contents = contents;
 	}
 	public Reservation() {
@@ -43,6 +47,18 @@ public class Reservation {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public String getOption() {
+		return option;
+	}
+	public void setOption(String option) {
+		this.option = option;
+	}
+	public String getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
 	public String getContents() {
 		return contents;
 	}
@@ -51,9 +67,11 @@ public class Reservation {
 	}
 	@Override
 	public String toString() {
-		return "Reservation [id=" + id + ", customerName=" + customerName + ", title=" + title + ", contents="
-				+ contents + "]";
+		return "Reservation [id=" + id + ", customerName=" + customerName + ", title=" + title + ", option=" + option
+				+ ", quantity=" + quantity + ", contents=" + contents + "]";
 	}
+	
+	
 	
 	
 	

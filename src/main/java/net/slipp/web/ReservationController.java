@@ -27,6 +27,7 @@ public class ReservationController {
 	@GetMapping("")
 	public String listOrder(Model model){
 		model.addAttribute("reservation",reservationRepository.findAll());
+		System.out.println("asdfasdf");
 		return "/reservation/list";
 	}
 	
