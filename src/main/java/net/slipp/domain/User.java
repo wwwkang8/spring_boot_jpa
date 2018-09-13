@@ -65,6 +65,13 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public void update(User newUser){
+		this.password=newUser.password;
+		this.email=newUser.email;
+		this.name=newUser.name;
+
+	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + "]";

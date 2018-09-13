@@ -3,10 +3,7 @@ package net.slipp.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import net.slipp.domain.User;
 import net.slipp.domain.UserRepository;
@@ -30,10 +27,11 @@ public class UserController {
 		return "redirect:/users";
 	}
 	
-	@PostMapping("/update")
-	public String update(User user){
-		System.out.println("Update info : "+user);
-		/*userRepository.save(arg0)*/ //어떤 userId인지 어떻게 알지?
+	@PutMapping("/{id}")
+	public String update(@PathVariable Long id, User newUser){
+		User user=userRepository.findById(id).get();
+		user.update(newUser); //User 객체 내부에 있는 정보를 업데이트 한다.
+		userRepository.save(user); //
 		return "redirect:/users";
 	}
 	
