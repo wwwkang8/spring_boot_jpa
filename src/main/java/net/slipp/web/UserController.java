@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import net.slipp.domain.User;
 import net.slipp.domain.UserRepository;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/users") //대표 URL. 이것 이후에 다른 url을 붙일 수 있다. url 중복 제거
 public class UserController {
@@ -46,5 +48,53 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "/user/updateForm";
 	}
+
+	@GetMapping("/loginForm")
+	public String loginForm(){
+		System.out.println("loginForm 통과");
+		return "/user/login";
+	}
+
+	@PostMapping("/login")
+	public String login(String userId, String password, HttpSession session){
+		User user=userRepository.findByUserId(userId);
+		if(user == null){
+			System.out.println("Login fail");
+			return "redirect:/users/loginForm";
+		}
+
+		if(!password.equals(user.getPassword())){
+			System.out.println("Login fail");
+			return "redirect:/users/loginForm";
+		}
+		System.out.println("Login Success");
+		session.setAttribute("user", user);
+
+		return "redirect:/";
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 }
