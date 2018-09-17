@@ -63,6 +63,7 @@
  ### 3-4강. 개인정보 수정 기능 구현1
  	- 기본적으로 MVC 패턴에서는 View에 접근할 때 무조건 Controller를 통해서 한다.
 	- 수정 버튼 폼
+	[View]
 	<tbody>
                	{{#users}}
                		<tr>
@@ -74,7 +75,8 @@
                		</tr>
                	{{/users}}
               </tbody>
-	 Controller
+	      
+	 [Controller]
 	 @GetMapping("{id}/form")
 	public String updateForm(@PathVariable Long id, Model model){
 		User user = userRepository.findById(id).get();  
@@ -84,3 +86,10 @@
 	}
 	
 	- 절대경로로 써서 css 경로 지정하기
+	
+	
+### 3-6강 : 원격 배포시에 오류 발생.
+원인 : 배포파일이 jar 파일로 압축되어 있어서 생기는 문제이다.
+jar 파일을 압축 풀고 다시 빌드한다.
+ubuntu@ip-172-31-27-178:~/spring_boot_jpa$ ./mvnw spring-boot:run &
+
