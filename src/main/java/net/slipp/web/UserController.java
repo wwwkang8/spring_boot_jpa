@@ -73,6 +73,14 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/logout")
+	public String logout(HttpSession session){
+		//session.invalidate();
+		/*session에 해당하는 이름을 매개변수로 넣어줘야 한다*/
+		session.removeAttribute("user");
+		return "redirect:/";
+	}
+
 
 
 
