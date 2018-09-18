@@ -65,6 +65,24 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public boolean matchId(Long newId){
+		if(newId==null){
+			return false;
+		}
+
+		return newId.equals(userId);
+	}
+
+	public boolean matchPassword(String newPassword){
+		if(newPassword==null){
+			return false;
+		}
+
+		return newPassword.equals(password);
+
+	}
+
 	public void update(User newUser){
 		this.password=newUser.password;
 		this.email=newUser.email;
