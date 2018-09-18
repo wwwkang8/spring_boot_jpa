@@ -30,7 +30,16 @@ public class UserController {
 	}
 	
 	@PutMapping("/{id}")
-	public String update(@PathVariable Long id, User updatedUser){
+	public String update(@PathVariable Long id, User updatedUser, HttpSession session){
+		if(HttpSessionUtils.isLoginUser(session)){//개인정보 수정시 로그인 하지 않았을 때 막는 코드
+			System.out.println("미로그인 상태입니다. 로그인해주세요");
+			return "redirect:/users/loginForm";
+		}
+
+		User sessionedUser=HttpSessionUtils.getUserFromSession(session);
+		if(!id.equals(sessionedUser.getId())){
+			throw new IllegalStateException("You can't update the another user info");
+		}
 		User user=userRepository.findById(id).get();
 		user.update(updatedUser); //User 객체 내부에 있는 정보를 업데이트 한다.
 		userRepository.save(user); //
@@ -44,15 +53,14 @@ public class UserController {
 	}
 	@GetMapping("{id}/form")
 	public String updateForm(@PathVariable Long id, Model model, HttpSession session){
-		User tempUser=(User)session.getAttribute("sessionedUser");
 
-		if(tempUser==null){//개인정보 수정시 로그인 하지 않았을 때 막는 코드
+		if(HttpSessionUtils.isLoginUser(session)){//개인정보 수정시 로그인 하지 않았을 때 막는 코드
 			System.out.println("미로그인 상태입니다. 로그인해주세요");
 			return "redirect:/users/loginForm";
 		}
 
-		User sessionedUser=(User) tempUser;
-		if(!id.equals(sessionedUser.getId())){
+		User sessionedUser=HttpSessionUtils.getUserFromSession(session);
+		if(!sessionedUser.matchId(id)){
 			throw new IllegalStateException("You can't update the another user info");
 		}
 
@@ -75,12 +83,12 @@ public class UserController {
 			return "redirect:/users/loginForm";
 		}
 
-		if(!password.equals(user.getPassword())){
+		if(!user.matchPassword(password)){
 			System.out.println("Login fail");
 			return "redirect:/users/loginForm";
 		}
 		System.out.println("Login Success");
-		session.setAttribute("sessionedUser", user);
+		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, user);
 
 		return "redirect:/";
 	}
@@ -90,7 +98,7 @@ public class UserController {
 	public String logout(HttpSession session){
 		//session.invalidate();
 		/*session에 해당하는 이름을 매개변수로 넣어줘야 한다*/
-		session.removeAttribute("sessionedUser");
+		session.removeAttribute(HttpSessionUtils.USER_SESSION_KEY);
 		return "redirect:/";
 	}
 
