@@ -30,9 +30,9 @@ public class UserController {
 	}
 	
 	@PutMapping("/{id}")
-	public String update(@PathVariable Long id, User newUser){
+	public String update(@PathVariable Long id, User updatedUser){
 		User user=userRepository.findById(id).get();
-		user.update(newUser); //User 객체 내부에 있는 정보를 업데이트 한다.
+		user.update(updatedUser); //User 객체 내부에 있는 정보를 업데이트 한다.
 		userRepository.save(user); //
 		return "redirect:/users";
 	}
@@ -43,8 +43,20 @@ public class UserController {
 		return "/user/list";
 	}
 	@GetMapping("{id}/form")
-	public String updateForm(@PathVariable Long id, Model model){
-		User user = userRepository.findById(id).get();  
+	public String updateForm(@PathVariable Long id, Model model, HttpSession session){
+		User tempUser=(User)session.getAttribute("sessionedUser");
+
+		if(tempUser==null){//개인정보 수정시 로그인 하지 않았을 때 막는 코드
+			System.out.println("미로그인 상태입니다. 로그인해주세요");
+			return "redirect:/users/loginForm";
+		}
+
+		User sessionedUser=(User) tempUser;
+		if(!id.equals(sessionedUser.getId())){
+			throw new IllegalStateException("You can't update the another user info");
+		}
+
+		User user = userRepository.findById(id).get();
 		model.addAttribute("user", user);
 		return "/user/updateForm";
 	}
@@ -68,19 +80,48 @@ public class UserController {
 			return "redirect:/users/loginForm";
 		}
 		System.out.println("Login Success");
-		session.setAttribute("user", user);
+		session.setAttribute("sessionedUser", user);
 
 		return "redirect:/";
 	}
+
 
 	@GetMapping("/logout")
 	public String logout(HttpSession session){
 		//session.invalidate();
 		/*session에 해당하는 이름을 매개변수로 넣어줘야 한다*/
-		session.removeAttribute("user");
+		session.removeAttribute("sessionedUser");
 		return "redirect:/";
 	}
 
+    /*
+     * @GetMapping("/loginForm") 이렇
+     * public String loginForm(){
+     *      return "/user/login";
+     * }
+     *
+     *
+     * @PostMapping("/{id}/login")
+     * public String login(String userId, String password, HttpSession session){
+     *      User user=userRepository.findById(userId).get();
+     *      if(user==null){
+     *          return "redirect:/users/loginForm";
+     *      }
+     *
+     *      session.setAttribute(user);
+     *
+     *      return "redirect:/";
+     *
+     * }
+     *
+     * @GetMapping("/logout")
+     * public String logout(HttpSession session){
+     *      session.removeAttribute("user")
+     *      return "redirect:/";
+     *
+     * }
+     *
+     * */
 
 
 
@@ -104,5 +145,7 @@ public class UserController {
 
 
 
-	
+
+
+
 }

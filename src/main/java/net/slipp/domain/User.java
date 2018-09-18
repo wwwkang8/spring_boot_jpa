@@ -11,7 +11,7 @@ public class User {
 	@GeneratedValue //데이터베이스에서 자동으로 1씩 증가. 시퀀스와 기능이 동일
 	private Long id;
 	
-	@Column(nullable=false, length=20) //userId에는 null이 들어갈 수 없다는 뜻
+	@Column(nullable=false, length=20, unique=true) //userId에는 null이 들어갈 수 없다는 뜻
 	private String userId;
 	
 	private String password;
