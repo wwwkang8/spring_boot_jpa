@@ -57,6 +57,7 @@
                                                                                이동하는 명령어.
     - ~tomcat/webapps$ mv my-slipp-0.0.1-SNAPSHOT/ ROOT : ROOT 폴더를 생성하여 my-slipp-0.0.1-SNAPSHOT 프로젝트를 이동.
     ** 이렇게 되면 IP주소:8080 주소를 입력하면 바로 ROOT 디렉토리로 연결되어 프로젝트가 뜬다.
+    - ~/tomcat/bin$ ./startup.sh : 톰캣 서버를 실행시키고 접속이 되면 성공!!
     
 
 ### 6. 로그 확인하기
