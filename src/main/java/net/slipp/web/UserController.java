@@ -51,6 +51,7 @@ public class UserController {
 		model.addAttribute("users", userRepository.findAll());
 		return "/user/list";
 	}
+
 	@GetMapping("{id}/form")
 	public String updateForm(@PathVariable Long id, Model model, HttpSession session){
 
@@ -68,6 +69,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "/user/updateForm";
 	}
+
 
 	@GetMapping("/loginForm")
 	public String loginForm(){
@@ -102,34 +104,6 @@ public class UserController {
 		return "redirect:/";
 	}
 
-    /*
-     * @GetMapping("/loginForm") 이렇
-     * public String loginForm(){
-     *      return "/user/login";
-     * }
-     *
-     *
-     * @PostMapping("/{id}/login")
-     * public String login(String userId, String password, HttpSession session){
-     *      User user=userRepository.findById(userId).get();
-     *      if(user==null){
-     *          return "redirect:/users/loginForm";
-     *      }
-     *
-     *      session.setAttribute(user);
-     *
-     *      return "redirect:/";
-     *
-     * }
-     *
-     * @GetMapping("/logout")
-     * public String logout(HttpSession session){
-     *      session.removeAttribute("user")
-     *      return "redirect:/";
-     *
-     * }
-     *
-     * */
 
 
 

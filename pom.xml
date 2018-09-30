@@ -6,7 +6,7 @@
 	<groupId>net.slipp</groupId>
 	<artifactId>my-slipp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>myslipp</name>
 	<description>SLIPP QnA</description>
@@ -32,6 +32,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!--내장된 톰캣을 사용하지 않고 별도의 톰캣을 사용하겠다고 지정하는것-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

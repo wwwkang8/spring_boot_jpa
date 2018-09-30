@@ -12,9 +12,9 @@ public class HttpSessionUtils {
         if(sessionedUser==null){
             return false;
         }
-
         return true;
     }
+
 
     public static User getUserFromSession(HttpSession session){
         if(!isLoginUser(session)){
