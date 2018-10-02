@@ -37,4 +37,56 @@
       **해결책: $ winpty docker exec -it jwp //bin//sh : 이 명령어를 git bash를 이용해서 입력하면 윈도우에서도 우분투 운영체제에 접속할 수 있다.
       (해결 링크 : https://goo.gl/JgeS31)
  ![default](https://user-images.githubusercontent.com/26863285/46289765-f20cff00-c5c4-11e8-973d-56329d02a156.png)
+ 
+ 
+ 
+ 
+ # docker ubuntu 한글버전 생성 및 자바 설치
+  
+ ## 1. ubuntu 한글 버전 설치
+    - $ vi Dockerfile : Dockerfile 생성.
+    - Docker 파일에 코드입력 : https://goo.gl/xd1rz2 이곳에서 도커파일 관련 코드 복사해서 붙여넣고 wq!
+    - $ docker-machine restart : 도커 머신을 다시 시작
+    - $ docker build --tag ko_ubuntu:latest ./  : 이렇게해서 최신 우분투 버전 가져온다
+    - !! 데몬 뭐시기 나오면 : eval $(docker-machine env 이미지이름) 실행
+    - $ docker images : 새로 생긴 ko_ubuntu 이미지를 확인할 수 있다.
+ ![docker images](https://user-images.githubusercontent.com/26863285/46330525-460ff600-c64e-11e8-9afb-2d357c8020ea.png)
+ 
+    - $ winpty docker run -it --name ko_ubuntu ko_ubuntu //bin//sh : ko_ubuntu 라는 이름의 이미지를 docker 컨테이너에 생성하고
+        이것을 실행하여 bash shell에 접속한다는 커맨드
+    - # locale : 우분투 운영체제에 접속하여 "locale" 입력하면 한글 설정이 된 것을 확인할 수 있다.
+    - # exit : exit 커맨드로 우분투 운영체제 이미지에서 나올 수 있다.
+    - $ docker ps -a : 현재 도커 컨테이너의 프로세스 목록 볼 수 있다.
+ ![default](https://user-images.githubusercontent.com/26863285/46330480-1d87fc00-c64e-11e8-997c-ba96bdbfb4ba.png)
+    
+    - $ docker start ko_ubuntu : ko_ubuntu 이미지 실행
+    - $ winpty docker exec -it ko_ubuntu //bin//sh : ko_ubuntu에 데몬으로 접속하는 커맨드
+![start](https://user-images.githubusercontent.com/26863285/46330482-1e209280-c64e-11e8-88a2-ab17a5e97f0a.png)
+    
+ ## 2. docker 이미지 삭제 및 다시 생성
+    - $ docker stop ko_ubuntu : 기존에 실행되고 있는 ko_ubuntu 이미지를 종료한다.
+    - $ docker rm ko_ubuntu : ko_ubuntu 이미지를 삭제한다.
+    - $ winpty docker run -dit --name my-slipp ko_ubuntu :
+      1) -dit : -dit 옵션은 이미지 생성 후 바로 실행시키는 옵션이다
+    - $ winpty docker exec -it my-slipp //bin//sh : 데몬으로 my-slipp 이미지 실행
+![ko_ubuntu my-slipp](https://user-images.githubusercontent.com/26863285/46330598-a7d06000-c64e-11e8-93d2-97afccb3ecc1.png)
+    
+ ## 3. 자바 설치
+    - my-slipp 이미지에 접속한 상태에서 해야한다.
+    - $ cd usr : usr 폴더로 이동
+    - $ mkdir apps : usr 폴더 내부에 apps 라는 폴더 생성
+    - $ apt-get install wget : wget 명령어를 설치
+    12:50분부터 다시 듣기
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     
