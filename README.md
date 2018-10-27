@@ -133,6 +133,10 @@
     - $ ls -al 명령어 -> cd spring_boot_jpa : ls -al 명령어로 클론한 소스폴더에 접근한다.
     - $ chmod +x mvnw : 현재 로그인한 계정에만 실행권한을 부여하는 것(이것을 안하면 permission denied가 뜬다)
     - $ ./mvnw clean package : 지난 시간에 개발한 코드를 그대로 빌드 해준다.
+    
+    - 주의 : 기본 클래스 org.apache.maven.wrapper.MavenWrapperMain을(를) 찾거나 로드할 수 없습니다.
+    - 해결책 : gitignore에 wrapper.jar 가 입력되어 있어서 그런 것 이기 때문에 깃 이그노어에서 제외한다
+    - 링크 : https://www.slipp.net/questions/585
  
 ### 3) 빌드 이후 서버 띄우기
     - $ cd target : target 폴더로 이동.
