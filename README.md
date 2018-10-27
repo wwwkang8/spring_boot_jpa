@@ -118,7 +118,7 @@
     - 심볼릭 링크 지정 : ln -s jdk1.8.0_181/ java  명령어는  jdk 디렉토리를 java라는 별칭을 지어준다는 것으로 보면 됨.
                         결과 : java -> jdk1.8.0_181/
     - 환경변수 추가 : vi .bash_profile에 접속하여 다음의 명령어를 입력하고 저장한다
-                     JAVA_HOME=/home/slipp/java    : home의 slipp계정에 java를 설정해준다.
+                     JAVA_HOME=/home/ubuntu/java    : home의 ubuntu계정에 java를 설정해준다.
                      PATH=$PATH:$JAVA_HOME/bin     : 기존에 있던 path에 JAVA_HOME이라는 path를 추가해주는 것.
     - bash_profile 반영 : $ source .bash_profile 명령어 입력.
                           $ env로 환경변수 변경된 것 확인 가능
